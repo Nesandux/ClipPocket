@@ -1,0 +1,11 @@
+Clip Pocket 1.8
+
+Fresh Gradle assembleDebug: PASSED
+APK signature: VERIFIED; matches version 1.7 certificate.
+Version: 1.8 / versionCode 9; package: com.clippocket.app.
+Version-tag comparison: 9 valid/invalid checks passed.
+Compiled APK contains GitHub-release updater, package verifier, and Android install provider.
+WhatsApp contact button and link absent from compiled APK and source.
+SHA-256: a3793f9b90ae6ddb4ecca43e11aa49ebefb296ee71390696849c4baa2d7644fb
+
+No Android device or emulator QA was performed. The update check, download, signature verification, installation permission and installer flow require phone testing. GitHub Release v1.8 must contain a corresponding signed APK before the update mechanism can find a release. The app uses a debug signing key; do not use that key for a production release.

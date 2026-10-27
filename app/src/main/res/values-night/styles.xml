@@ -1,5 +1,6 @@
 <resources>
 <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
+<item name="android:alertDialogTheme">@style/ClipDialog</item>
 <item name="android:fontFamily">sans</item>
 <item name="android:colorAccent">#82B4FF</item>
 <item name="android:windowLightStatusBar">false</item>
@@ -8,5 +9,9 @@
 <item name="android:windowActionModeOverlay">true</item>
 <item name="android:windowLightNavigationBar">false</item>
 <item name="android:windowBackground">#080C14</item>
+</style>
+<style name="ClipDialog" parent="android:style/Theme.Material.Dialog.Alert">
+<item name="android:windowBackground">@drawable/dialog_panel</item>
+<item name="android:colorAccent">#82B4FF</item>
 </style>
 </resources>

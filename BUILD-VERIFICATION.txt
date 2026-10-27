@@ -1,11 +1,8 @@
-Clip Pocket 1.8
+Clip Pocket 1.9
 
-Fresh Gradle assembleDebug: PASSED
-APK signature: VERIFIED; matches version 1.7 certificate.
-Version: 1.8 / versionCode 9; package: com.clippocket.app.
-Version-tag comparison: 9 valid/invalid checks passed.
-Compiled APK contains GitHub-release updater, package verifier, and Android install provider.
-WhatsApp contact button and link absent from compiled APK and source.
-SHA-256: a3793f9b90ae6ddb4ecca43e11aa49ebefb296ee71390696849c4baa2d7644fb
+Gradle assembleDebug: PASSED
+APK signature: VERIFIED with development certificate.
+Version: 1.9 / versionCode 10; package: com.clippocket.app.
+SHA-256: afc7bf72816fcf8609fededd0f65708ffeec67781ce3a6b5703c91678a6ee2c3
 
-No Android device or emulator QA was performed. The update check, download, signature verification, installation permission and installer flow require phone testing. GitHub Release v1.8 must contain a corresponding signed APK before the update mechanism can find a release. The app uses a debug signing key; do not use that key for a production release.
+No Android device or emulator QA was performed for 1.9. Layout, update and installer flows require phone testing. A corresponding signed APK must be attached to a public GitHub Release for update checks to work. Google Play Protect blocked version 1.8; the reason and version 1.9 classification have not been verified. The app uses a debug signing key; do not use that key for a production release.

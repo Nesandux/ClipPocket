@@ -1,4 +1,4 @@
-# Clip Pocket 1.8 for Android
+# Clip Pocket 1.9 for Android
 
 Native video/audio downloader for YouTube, Facebook, Instagram, TikTok and other sites supported by the bundled yt-dlp engine. Site support does not guarantee every video or link works.
 
@@ -8,7 +8,7 @@ Android 10+ on ARM64 devices. This build uses the same development certificate a
 
 ## Appearance
 
-Version 1.8 retains the Apple-inspired interface and supports Match device, Light and Dark through the top-right Appearance menu. Match device is the default and follows the system theme. The app has rounded cards and controls, blue accents, theme-matched system bars, an updated app icon and a segmented Downloads filter. The main screen retains its responsive layout, automatic link preview and thumbnail loading indicator. The About screen still credits developer Nesandu.
+Version 1.9 retains the Apple-inspired interface and supports Match device, Light and Dark through the top-right Appearance menu. Match device is the default and follows the system theme. The app has rounded cards and controls, blue accents, theme-matched system bars, an updated app icon and a segmented Downloads filter. The main screen and Downloads list have increased spacing between content. The main screen retains its responsive layout, automatic link preview and thumbnail loading indicator. The About screen still credits developer Nesandu.
 
 ## Navigation
 

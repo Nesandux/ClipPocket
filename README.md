@@ -1,4 +1,4 @@
-# Clip Pocket 2.1 for Android
+# Clip Pocket 2.0 for Android
 
 Native video/audio downloader for YouTube, Facebook, Instagram, TikTok and other sites supported by the bundled yt-dlp engine. Site support does not guarantee every video or link works.
 
@@ -8,11 +8,11 @@ Android 10+ on ARM64 devices. This build uses the same development certificate a
 
 ## Appearance
 
-Version 2.1 retains the Apple-inspired interface and supports Match device, Light and Dark through the top-right Appearance menu. Match device is the default and follows the system theme. The app has rounded popup menus and dialog panels, rounded cards and controls, blue accents, theme-matched system bars, an updated app icon and a segmented Downloads filter. The main screen and Downloads list have increased spacing between content. The main screen retains its responsive layout, automatic link preview and thumbnail loading indicator. The About screen still credits developer Nesandu.
+Version 2.0 retains the Apple-inspired interface and supports Match device, Light and Dark through the top-right Appearance menu. Match device is the default and follows the system theme. The app has rounded popup menus and dialog panels, rounded cards and controls, blue accents, theme-matched system bars, an updated app icon and a segmented Downloads filter. The main screen and Downloads list have increased spacing between content. The main screen retains its responsive layout, automatic link preview and thumbnail loading indicator. The About screen still credits developer Nesandu.
 
 ## Navigation
 
-The main screen has a Downloads button in its header. Tap it to open the saved-files page. A round × close button appears at the upper left of Downloads and About; tap it to return to the same main screen without losing the link or preview. The menu opens a dedicated About page with a profile photo of developer Nesandu, and clickable GitHub and Facebook contacts. The exact URLs are provided by the developer. The Downloads heading and manual refresh button are removed; the list refreshes when opening Downloads, resuming the app, or completing a download. There is no New download tab or Retry preview button. Paste link loads a fresh preview automatically, including when pasting the same link again; typing, sharing or changing quality also triggers automatic preview loading.
+The main screen has a Downloads button in its header. Tap it to open the saved-files page. A round × close button appears at the upper left of Downloads and About; tap it to return to the same main screen without losing the link or preview. The menu opens a dedicated About page with a placeholder avatar, developer Nesandu, and clickable GitHub and Facebook contacts. The exact URLs are provided by the developer. The Downloads heading and manual refresh button are removed; the list refreshes when opening Downloads, resuming the app, or completing a download. There is no New download tab or Retry preview button. Paste link loads a fresh preview automatically, including when pasting the same link again; typing, sharing or changing quality also triggers automatic preview loading.
 
 ## App updates (direct APK distribution)
 

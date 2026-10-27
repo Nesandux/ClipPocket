@@ -1,8 +1,8 @@
-Clip Pocket 2.0
+Clip Pocket 2.2
 
 Fresh Gradle assembleDebug: PASSED
 APK signature: VERIFIED with development certificate.
-Version: 2.0 / versionCode 11; package: com.clippocket.app.
-SHA-256: 53cbbc684297a6a38167587acc39159b3fee5085ba62ddb8c11041fb1f54a96e
+Version: 2.2 / versionCode 13; package: com.clippocket.app.
+SHA-256: 8052ece6c008c71530362777c27dc1ab95a74350b39c262f25094aa3ed32e5a2
 
-No Android device or emulator QA was performed for 2.0. Popup appearance, update and installer flows require phone testing. Google Play Protect blocked version 1.8; the reason and version 2.0 classification have not been verified. The app uses a debug signing key; do not use it for a production release.
+No Android device or emulator QA was performed. Clear button, profile layout and engine update require phone testing. The app-version updater and installation permission are removed; the engine-update option remains. Google Play Protect blocked version 1.8; version 2.2 classification has not been verified. The app uses a debug signing key; do not use it for a production release.

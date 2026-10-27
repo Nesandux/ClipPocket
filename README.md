@@ -1,4 +1,4 @@
-# Clip Pocket 2.0 for Android
+# Clip Pocket 2.2 for Android
 
 Native video/audio downloader for YouTube, Facebook, Instagram, TikTok and other sites supported by the bundled yt-dlp engine. Site support does not guarantee every video or link works.
 
@@ -8,17 +8,15 @@ Android 10+ on ARM64 devices. This build uses the same development certificate a
 
 ## Appearance
 
-Version 2.0 retains the Apple-inspired interface and supports Match device, Light and Dark through the top-right Appearance menu. Match device is the default and follows the system theme. The app has rounded popup menus and dialog panels, rounded cards and controls, blue accents, theme-matched system bars, an updated app icon and a segmented Downloads filter. The main screen and Downloads list have increased spacing between content. The main screen retains its responsive layout, automatic link preview and thumbnail loading indicator. The About screen still credits developer Nesandu.
+Version 2.2 retains the Apple-inspired interface and supports Match device, Light and Dark through the top-right Appearance menu. Match device is the default and follows the system theme. The app has rounded popup menus and dialog panels, rounded cards and controls, blue accents, theme-matched system bars, an updated app icon and a segmented Downloads filter. The main screen and Downloads list have increased spacing between content. The main screen retains its responsive layout, automatic link preview and thumbnail loading indicator. The About screen still credits developer Nesandu.
 
 ## Navigation
 
-The main screen has a Downloads button in its header. Tap it to open the saved-files page. A round × close button appears at the upper left of Downloads and About; tap it to return to the same main screen without losing the link or preview. The menu opens a dedicated About page with a placeholder avatar, developer Nesandu, and clickable GitHub and Facebook contacts. The exact URLs are provided by the developer. The Downloads heading and manual refresh button are removed; the list refreshes when opening Downloads, resuming the app, or completing a download. There is no New download tab or Retry preview button. Paste link loads a fresh preview automatically, including when pasting the same link again; typing, sharing or changing quality also triggers automatic preview loading.
+The main screen has a Downloads button in its header. Tap it to open the saved-files page. A round × close button appears at the upper left of Downloads and About; tap it to return to the same main screen without losing the link or preview. The menu opens a dedicated About page with developer Nesandu and clickable GitHub and Facebook contacts, without a profile image or avatar. The exact URLs are provided by the developer. The Downloads heading and manual refresh button are removed; the list refreshes when opening Downloads, resuming the app, or completing a download. There is no New download tab or Retry preview button. The × button in the link field clears the current link and preview. Paste link loads a fresh preview automatically, including when pasting the same link again; typing, sharing or changing quality also triggers automatic preview loading.
 
-## App updates (direct APK distribution)
+## Updates
 
-From the ⋯ menu, choose Check for updates. The app queries the latest public GitHub Release at `Nesandux/ClipPocket`, compares the numeric release tag against its installed version, and offers to download a newer APK. A release needs a numeric tag such as `v2.2` and an attached `.apk` file. APK versionName must match the tag, package name must match, versionCode must increase, and the APK must be signed with the same certificate as the installed app. Any GitHub-provided SHA-256 digest is checked as well. Android prompts the user to allow the installation source if needed and to confirm installation; installation is never silent. The first updater-capable version must itself be manually installed over 1.6 or 1.7. Existing versions 1.5 and older used a different key and cannot update directly.
-
-This updater is for direct APK distribution. Google Play-distributed apps must use Google Play's update mechanism and must meet Play policies; this development build is not a Play Store release. Keep signing keys private and never commit them to this repository.
+The app has no in-app app-version updater. The separate Update download engine action remains in the menu.
 
 ## Preview and quality
 

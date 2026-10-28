@@ -10,14 +10,14 @@ import subprocess
 import sys
 import threading
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, filedialog
 import urllib.request
 import webbrowser
 import customtkinter as ctk
 from PIL import Image
-from core import MEDIA, extract_url, selector, size_label, safe_media
+from core import MEDIA, extract_url, selector, size_label, safe_media, load_download_folder, save_download_folder
 
-VERSION = '1.0.0'
+VERSION = '1.1.0'
 ROOT = Path(getattr(sys, '_MEIPASS', Path(__file__).parent))
 DATA = Path(os.environ.get('LOCALAPPDATA', Path.home() / '.local/share')) / 'ClipPocket'
 DATA.mkdir(parents=True, exist_ok=True)
@@ -44,7 +44,9 @@ class App(ctk.CTk):
         self.geometry('880x740')
         self.minsize(620, 620)
         self.configure(fg_color=('#F2F2F7', '#101116'))
-        self.folder = downloads_folder()
+        self.settings_path = DATA / "settings.json"
+        self.folder, folder_notice = load_download_folder(self.settings_path, downloads_folder())
+        self.library_window = None
         self.events = queue.Queue()
         self.generation = 0
         self.timer = None
@@ -101,8 +103,10 @@ class App(ctk.CTk):
         self.download_button.pack(side='left', fill='x', expand=True)
         self.cancel_button = ctk.CTkButton(actions, text='Cancel', width=90, height=46, command=self.cancel, state='disabled')
         self.cancel_button.pack(side='right', padx=(10, 0))
-        self.status = ctk.CTkLabel(self.main, text='Files save to Downloads / ClipPocket', anchor='w')
+        self.status = ctk.CTkLabel(self.main, text=folder_notice or 'Ready when you are', anchor='w', wraplength=760)
         self.status.pack(fill='x', pady=(6, 0))
+        self.folder_label = ctk.CTkLabel(self.main, text='Save to: ' + str(self.folder), anchor='w', wraplength=760, text_color=('#6B6B73','#A8A8B3'))
+        self.folder_label.pack(fill='x')
         self.protocol('WM_DELETE_WINDOW', self.close)
         self.after(100, self.poll)
 
@@ -279,7 +283,7 @@ class App(ctk.CTk):
                 if not self.cancelled.is_set():
                     if code:
                         raise RuntimeError('\n'.join(last_lines)[-1000:])
-                    message = 'Saved to Downloads / ClipPocket'
+                    message = 'Saved to ' + str(self.folder)
             except Exception as error:
                 if self.process:
                     self.stop_process(self.process)
@@ -305,7 +309,7 @@ class App(ctk.CTk):
 
     def menu(self):
         panel = self.panel('Clip Pocket', '')
-        for title, action in [('Appearance', self.appearance), ('Update download engine', self.update_engine), ('About Clip Pocket', self.about)]:
+        for title, action in [('Change download folder', self.change_download_folder), ('Appearance', self.appearance), ('Update download engine', self.update_engine), ('About Clip Pocket', self.about)]:
             ctk.CTkButton(panel.content, text=title, height=44, command=lambda f=action: (panel.destroy(), f())).pack(fill='x', pady=5)
 
     def panel(self, title, text):
@@ -322,6 +326,25 @@ class App(ctk.CTk):
         win.content = content
         ctk.CTkButton(win, text='Close', command=win.destroy).pack(pady=(0,16))
         return win
+
+    def change_download_folder(self):
+        if self.busy:
+            messagebox.showinfo('Please wait', 'Finish or cancel the current task before changing the download folder.', parent=self)
+            return
+        selected = filedialog.askdirectory(title='Choose default download folder', initialdir=str(self.folder), mustexist=True, parent=self)
+        if not selected:
+            return
+        try:
+            folder = save_download_folder(self.settings_path, selected)
+        except (OSError, ValueError) as error:
+            messagebox.showerror('Could not use this folder', str(error), parent=self)
+            return
+        self.folder = folder
+        self.folder_label.configure(text='Save to: ' + str(folder))
+        self.status.configure(text='Download folder saved. Existing files stay in their original location.')
+        if self.library_window and self.library_window.winfo_exists():
+            self.library_window.destroy()
+            self.library_window = None
 
     def appearance(self):
         win = self.panel('Appearance', 'Match your device, or choose a theme.')
@@ -360,7 +383,11 @@ class App(ctk.CTk):
         self.worker(work)
 
     def show_downloads(self):
-        win = self.panel('Downloads', '')
+        if self.library_window and self.library_window.winfo_exists():
+            self.library_window.lift()
+            return
+        win = self.panel('Downloads', 'Folder: ' + str(self.folder))
+        self.library_window = win
         win.geometry('720x580')
         for path in sorted(self.folder.iterdir(), key=lambda p: p.stat().st_mtime, reverse=True):
             if not safe_media(path, self.folder):

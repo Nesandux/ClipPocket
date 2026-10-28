@@ -38,3 +38,58 @@ def size_label(info):
 def safe_media(path, folder):
     p, root = Path(path), Path(folder).resolve()
     return p.is_file() and not p.is_symlink() and p.resolve().parent == root and p.suffix.lower() in MEDIA
+
+
+def validate_folder(folder):
+    """Verify a chosen existing directory can actually receive a file."""
+    import tempfile
+    path = Path(folder).expanduser()
+    if not path.is_absolute() or not path.is_dir():
+        raise ValueError('Choose an existing folder using an absolute path.')
+    with tempfile.TemporaryFile(dir=path):
+        pass
+    return path.resolve()
+
+
+def save_download_folder(settings_path, folder):
+    """Save only after validation, using an atomic replacement of preferences."""
+    import json
+    import os
+    import tempfile
+    folder = validate_folder(folder)
+    settings_path = Path(settings_path)
+    settings_path.parent.mkdir(parents=True, exist_ok=True)
+    prefs = {}
+    try:
+        prefs = json.loads(settings_path.read_text(encoding='utf-8'))
+        if not isinstance(prefs, dict):
+            prefs = {}
+    except (OSError, ValueError):
+        pass
+    prefs['download_folder'] = str(folder)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', dir=settings_path.parent, delete=False) as handle:
+            temporary = Path(handle.name)
+            json.dump(prefs, handle, indent=2)
+        os.replace(temporary, settings_path)
+    finally:
+        if temporary:
+            temporary.unlink(missing_ok=True)
+    return folder
+
+
+def load_download_folder(settings_path, fallback):
+    """Return the saved directory or an explicit fallback notice for unavailable drives."""
+    import json
+    settings_path = Path(settings_path)
+    if not settings_path.exists():
+        return Path(fallback), ''
+    try:
+        prefs = json.loads(settings_path.read_text(encoding='utf-8'))
+        folder = prefs.get('download_folder')
+        if not folder:
+            return Path(fallback), ''
+        return validate_folder(folder), ''
+    except (OSError, ValueError, TypeError, AttributeError):
+        return Path(fallback), 'Your saved download folder is unavailable. Using the standard Downloads/ClipPocket folder for now.'

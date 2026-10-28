@@ -1,5 +1,5 @@
 #define MyAppName "Clip Pocket"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.1.0"
 
 [Setup]
 AppId={{861DC1A4-540B-4B55-8B74-273CFAD6B029}

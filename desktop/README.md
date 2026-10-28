@@ -1,4 +1,4 @@
-# Clip Pocket for Windows 1.0.0
+# Clip Pocket for Windows 1.1.0
 
 Desktop companion to the Android app, developed by Nesandu. Windows 10/11 x64.
 
@@ -8,14 +8,14 @@ In the repository's Actions tab, open the latest successful **Build Clip Pocket 
 
 Alternatively download **ClipPocket-Windows-x64**, extract the entire ZIP and open **ClipPocket.exe**. Keep all portable files together. No separate Python installation is required for this build. The executable is unsigned; Windows may display an unknown-publisher warning. This does not establish that the executable is safe; inspect the source and build provenance before distributing it.
 
-The installer location and media download location are separate. Media still saves to Downloads/ClipPocket; there is no download-folder selector in this version.
+The installer location and media download location are separate. Use the menu → **Change download folder** to choose where future videos and audio are saved. The setting persists after closing the app. Initially the folder is Downloads/ClipPocket. Existing downloads are not moved, and the saved-file list displays media in the currently selected folder. If a saved folder becomes unavailable (for example a disconnected external drive), the app clearly reports fallback to Downloads/ClipPocket.
 
 ## Features
 
 - Paste or type a supported public video URL, with a clear × button.
 - Automatic thumbnail, title and description preview. Click the description for full details.
 - Quality caps from 144p through 2160p and M4A audio. Selected-format MB/GB estimates include audio and video, and show unavailable when incomplete.
-- Downloads save in the Windows user's Downloads/ClipPocket directory.
+- Downloads save in your selected default folder; Change download folder is in the menu.
 - Progress and cancellation; incomplete downloads can leave .part files that are excluded from the saved-file list.
 - Saved-file rows with cached thumbnail, filename, playback and per-file delete confirmation. Only recognized media files directly in the app's folder can be deleted. Playback uses the Windows default player.
 - System, light and dark appearance. About page credits Nesandu, with GitHub and Facebook links and no avatar or WhatsApp contact.

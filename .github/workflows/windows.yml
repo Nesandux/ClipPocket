@@ -24,7 +24,7 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Smoke test Windows UI
         working-directory: desktop
-        run: python -c "from app import App; app = App(); app.after(1000, app.destroy); app.mainloop()"
+        run: python tests/smoke_windows.py
       - name: Build Windows app
         run: python desktop/build_windows.py
       - name: Build setup installer

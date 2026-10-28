@@ -27,6 +27,39 @@ jobs:
         run: python -c "from app import App; app = App(); app.after(1000, app.destroy); app.mainloop()"
       - name: Build Windows app
         run: python desktop/build_windows.py
+      - name: Build setup installer
+        shell: pwsh
+        run: |
+          $compiler = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (!(Test-Path $compiler)) {
+            choco install innosetup --no-progress -y
+            if ($LASTEXITCODE -ne 0) { throw 'Inno Setup installation failed' }
+          }
+          & $compiler desktop/installer.iss
+          if ($LASTEXITCODE -ne 0) { throw 'Installer compilation failed' }
+      - name: Verify custom install path and uninstall
+        shell: pwsh
+        run: |
+          $target = Join-Path $env:RUNNER_TEMP 'Clip Pocket Custom Location'
+          $setup = (Resolve-Path 'desktop/installer-output/ClipPocket-Setup.exe').Path
+          $result = Start-Process -FilePath $setup -ArgumentList "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /DIR=`"$target`"" -Wait -PassThru
+          if ($result.ExitCode -ne 0) { throw "Installer exit code: $($result.ExitCode)" }
+          $exe = Join-Path $target 'ClipPocket.exe'
+          if (!(Test-Path $exe)) { throw 'App was not installed at the chosen location' }
+          $app = Start-Process -FilePath $exe -PassThru
+          Start-Sleep -Seconds 5
+          if ($app.HasExited) { throw 'Installed app exited during smoke test' }
+          Stop-Process -Id $app.Id -Force
+          $uninstall = Join-Path $target 'unins000.exe'
+          $removed = Start-Process -FilePath $uninstall -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART' -Wait -PassThru
+          if ($removed.ExitCode -ne 0) { throw 'Uninstaller failed' }
+          if (Test-Path $exe) { throw 'App executable remains after uninstall' }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ClipPocket-Windows-Setup
+          path: desktop/installer-output/ClipPocket-Setup.exe
+          if-no-files-found: error
+          retention-days: 30
       - uses: actions/upload-artifact@v4
         with:
           name: ClipPocket-Windows-x64

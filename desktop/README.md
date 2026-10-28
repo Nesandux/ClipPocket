@@ -4,7 +4,11 @@ Desktop companion to the Android app, developed by Nesandu. Windows 10/11 x64.
 
 ## Download the Windows app
 
-In the repository's Actions tab, open the latest successful **Build Clip Pocket for Windows** run. Download the **ClipPocket-Windows-x64** artifact (GitHub sign-in required), extract the entire ZIP, and open **ClipPocket.exe**. Keep all extracted files together. No separate Python installation is required for this build. The executable is unsigned; Windows may display an unknown-publisher warning. This does not establish that the executable is safe; inspect the source and build provenance before distributing it.
+In the repository's Actions tab, open the latest successful **Build Clip Pocket for Windows** run. For installation, download **ClipPocket-Windows-Setup**, extract its ZIP and run **ClipPocket-Setup.exe**. The wizard lets you select the installation folder, adds a Start menu entry and offers an optional desktop shortcut. Windows Apps settings includes an uninstaller. Installation is per-user and does not require administrator access; choose a folder you can write to. Uninstalling does not delete your downloaded media or cached engine.
+
+Alternatively download **ClipPocket-Windows-x64**, extract the entire ZIP and open **ClipPocket.exe**. Keep all portable files together. No separate Python installation is required for this build. The executable is unsigned; Windows may display an unknown-publisher warning. This does not establish that the executable is safe; inspect the source and build provenance before distributing it.
+
+The installer location and media download location are separate. Media still saves to Downloads/ClipPocket; there is no download-folder selector in this version.
 
 ## Features
 

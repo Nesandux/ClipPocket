@@ -1,0 +1,4 @@
+customtkinter>=5.2.2,<6
+Pillow>=11,<13
+pyinstaller>=6.16,<7
+imageio-ffmpeg>=0.6,<0.7
